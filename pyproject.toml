@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "smart-isbn-app"
+version = "0.1.0"
+description = "AI-powered book details agent"
+authors = ["Thales Yang"]
+package-mode = false  # <--- Essential: tells Poetry this is an app, not a library
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.31.0"
+pillow = "^10.2.0"
+requests = "^2.31.0"
+isbnlib = "^3.10.14"
+numpy = "^1.26.4"
+python-dotenv = "^1.0.1"
+openai = "^1.12.0"
+pydantic = "^2.6.1"
+pydantic-settings = "^2.2.1"  # Added to resolve your earlier ModuleNotFoundError
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
