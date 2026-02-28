@@ -89,6 +89,25 @@ def handle_scan():
         # Clear the input box for the next scan
         st.session_state.barcode_input = ""
 
+components.html(
+    """
+    <script>
+    const doc = window.parent.document;
+    doc.addEventListener('keydown', function(e) {
+        // Find the Streamlit text input by its placeholder or type
+        const inputs = doc.querySelectorAll('input[type="text"]');
+        // Assuming your barcode input is the first or specifically targeted
+        const barcodeInput = Array.from(inputs).find(el => el.placeholder === "Scan barcode here...");
+        
+        if (barcodeInput && doc.activeElement !== barcodeInput) {
+            barcodeInput.focus();
+        }
+    });
+    </script>
+    """,
+    height=0,
+)
+
 st.text_input(
     "Ready to scan...", 
     key="barcode_input", 
