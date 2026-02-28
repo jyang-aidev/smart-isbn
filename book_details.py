@@ -1,5 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import json
 import re
 import requests
@@ -56,27 +54,6 @@ def parse_book_info(html_content):
             publisher = publisher_data.strip()            
 
     return {"title": title, "author": author, "publisher": publisher, "publish_date": publish_date}
-
-def get_sim_book_details_headless(isbn):
-    """Function to be called from app.py"""
-    options = Options()
-    options.add_argument("--headless")
-    driver = webdriver.Chrome(options=options)
-    
-    url = f"https://book.douban.com/isbn/{isbn}/"
-
-    try:
-        driver.get(url)
-        driver.implicitly_wait(5)
-        html_content = driver.page_source
-        #print(html_content)
-
-        #with open("html.txt", "w", encoding="utf-8") as f:
-        #    f.write(html_content)
-
-        return parse_book_info(html_content)
-    finally:
-        driver.quit()
 
 def get_traditional_book_details(isbn):  
     """Replaces the Selenium version using Google Books API"""
